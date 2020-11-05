@@ -1,4 +1,4 @@
-import { readFile } from "fs/promises";
+import { promises as fs } from "fs";
 
 export interface IniData {
     global: Map<string, string>;
@@ -36,5 +36,5 @@ export function parseIni(data: string): IniData {
  * @param path The path to the INI file.
  */
 export async function readIni(path: string): Promise<IniData> {
-    return parseIni(await readFile(path, { encoding: 'utf8', flag: 'r' }));
+    return parseIni(await fs.readFile(path, { encoding: 'utf8', flag: 'r' }));
 }
